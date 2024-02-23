@@ -30,7 +30,7 @@ class SqsConsumer:
         region = self.settings.region
         url = self.settings.queue_url
         wait_time = self.settings.wait_time
-        vis_timout = self.settings
+        vis_timout = self.settings.visibility_timeout
         sqs = boto3.client('sqs', region_name=region)
 
         while True:
