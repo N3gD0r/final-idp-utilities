@@ -1,5 +1,5 @@
 from collections.abc import Callable
-from ..deploy_args_david_hdez.idp_args import ProgramArgs
+from deploy_args_david_hdez.idp_args import ProgramArgs
 
 import boto3
 import json

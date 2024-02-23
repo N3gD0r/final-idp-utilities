@@ -19,7 +19,7 @@ class ProgramArgs(ABC):
 
     @property
     def project(self):
-        return self._region
+        return self._project
 
     @property
     def owner(self):
