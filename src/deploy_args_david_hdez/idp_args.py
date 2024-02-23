@@ -65,3 +65,25 @@ class ExecuteStopFuncArgs(ProgramArgs):
         for key in ('tags', 'cron_expr'):
             if key in payload.keys():
                 setattr(self, key, payload[key])
+
+
+class DbManagedArgs(ProgramArgs):
+    def __init__(self):
+        super().__init__()
+        self.name = None
+        self.engine = None
+        self.instance_class = None
+        self.username = None
+        self.password = None
+        self.storage = None
+        self.st_type = None
+        self.is_public = None
+        self.db_name = None
+
+    def process_payload(self, payload: dict):
+        for key in ('engine', 'instance_class', 'storage',
+                    'st_type', 'is_public', 'username',
+                    'password', 'db_name', 'tags'):
+            if key in payload.keys():
+                setattr(self, key, payload[key])
+
