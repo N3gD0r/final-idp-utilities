@@ -53,6 +53,7 @@ class SqsConsumer:
                     self.args.team = workload.get('TeamName')
                     self.args.project = workload.get('ProjectName')
                     self.args.owner = workload.get('OwnerName')
+                    self.args.service_name = service.get('service_name')
                     self.args.process_payload(service)
 
                     self.program(self.args)

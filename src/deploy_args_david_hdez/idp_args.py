@@ -8,6 +8,7 @@ class ProgramArgs(ABC):
         self._team = None
         self._project = None
         self._owner = None
+        self._service_name = None
 
     @property
     def region(self):
@@ -25,6 +26,10 @@ class ProgramArgs(ABC):
     def owner(self):
         return self._owner
 
+    @property
+    def service_name(self):
+        return self._service_name
+
     @region.setter
     def region(self, value: str):
         self._region = value
@@ -40,6 +45,10 @@ class ProgramArgs(ABC):
     @owner.setter
     def owner(self, value: str):
         self._owner = value
+
+    @service_name.setter
+    def service_name(self, value: str):
+        self._service_name = value
 
     @abstractmethod
     def process_payload(self, payload: dict):
