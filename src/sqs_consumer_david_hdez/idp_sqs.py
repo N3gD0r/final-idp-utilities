@@ -8,9 +8,13 @@ import json
 class SqsSettings:
     def __init__(self,
                  queue_url: str = None,
-                 region: str = None):
+                 region: str = None,
+                 wait_time: int = 20,
+                 vis_timout: int = 60 * 2):
         self.queue_url = queue_url
         self.region = region
+        self.wait_time = wait_time
+        self.visibility_timeout = vis_timout
 
 
 class SqsConsumer:
@@ -25,13 +29,15 @@ class SqsConsumer:
     def get_workloads(self):
         region = self.settings.region
         url = self.settings.queue_url
+        wait_time = self.settings.wait_time
+        vis_timout = self.settings
         sqs = boto3.client('sqs', region_name=region)
 
         while True:
             response: dict = sqs.receive_message(
                 QueueUrl=url,
-                WaitTimeSeconds=20,
-                VisibilityTimeout=5
+                WaitTimeSeconds=wait_time,
+                VisibilityTimeout=vis_timout
             )
 
             if 'Messages' not in response:
