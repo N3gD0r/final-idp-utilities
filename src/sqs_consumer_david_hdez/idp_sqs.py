@@ -40,26 +40,24 @@ class SqsConsumer:
                 VisibilityTimeout=vis_timout
             )
 
-            if 'Messages' not in response:
-                return 'No messages available'
+            if 'Messages' in response:
+                for message in response['Messages']:
+                    receipt: str = message.get('ReceiptHandle')
+                    message_id: str = message.get('MessageId')
+                    body: str = message.get('Body')
 
-            for message in response['Messages']:
-                receipt: str = message.get('ReceiptHandle')
-                message_id: str = message.get('MessageId')
-                body: str = message.get('Body')
+                    workload: dict = json.loads(body)
+                    service: dict = workload.get('Service')
 
-                workload: dict = json.loads(body)
-                service: dict = workload.get('Service')
+                    self.args.region = workload.get('awsRegion')
+                    self.args.team = workload.get('TeamName')
+                    self.args.project = workload.get('ProjectName')
+                    self.args.owner = workload.get('OwnerName')
+                    self.args.process_payload(service)
 
-                self.args.region = workload.get('awsRegion')
-                self.args.team = workload.get('TeamName')
-                self.args.project = workload.get('ProjectName')
-                self.args.owner = workload.get('OwnerName')
-                self.args.process_payload(service)
+                    self.program(self.args)
 
-                self.program(self.args)
-
-                sqs.delete_message(
-                    QueueUrl=url,
-                    ReceiptHandle=receipt
-                )
+                    sqs.delete_message(
+                        QueueUrl=url,
+                        ReceiptHandle=receipt
+                    )
