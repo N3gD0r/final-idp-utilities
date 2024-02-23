@@ -79,9 +79,10 @@ class DbManagedArgs(ProgramArgs):
         self.st_type = None
         self.is_public = None
         self.db_name = None
+        self.store_creds = None
 
     def process_payload(self, payload: dict):
-        for key in ('engine', 'instance_class', 'storage',
+        for key in ('engine', 'instance_class', 'storage', 'store_creds',
                     'st_type', 'is_public', 'username',
                     'password', 'db_name', 'tags'):
             if key in payload.keys():
