@@ -93,7 +93,6 @@ class DbManagedArgs(ProgramArgs):
 class VmArgs(ProgramArgs):
     def __init__(self):
         super().__init__()
-        self.ami = None
         self.os = None
         self.cpu = None
         self.storage = None
@@ -105,7 +104,7 @@ class VmArgs(ProgramArgs):
         self.pub_key = None
 
     def process_payload(self, payload: dict):
-        for key in ('os', 'cpu', 'storage', 'ami',
+        for key in ('os', 'cpu', 'storage',
                     'disk_type', 'vpc', 'pub_key',
                     'data', 'instance_type', 'tags'):
             if key in payload.keys():
