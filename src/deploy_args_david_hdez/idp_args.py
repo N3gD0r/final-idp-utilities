@@ -93,17 +93,19 @@ class DbManagedArgs(ProgramArgs):
 class VmArgs(ProgramArgs):
     def __init__(self):
         super().__init__()
+        self.ami = None
         self.os = None
         self.cpu = None
-        self.memory = None
-        self.disk = None
-        self.instance_class = None
+        self.storage = None
+        self.disk_type = None
+        self.instance_type = None
         self.data = None
         self.tags = None
+        self.vpc = None
 
     def process_payload(self, payload: dict):
-        for key in ('os', 'cpu', 'memory', 'disk', 'data',
-                    'instance_class', 'storage', 'tags'):
+        for key in ('os', 'cpu', 'storage', 'disk_type', 'vpc',
+                    'data', 'ami', 'instance_type', 'tags'):
             if key in payload.keys():
                 setattr(self, key, payload[key])
 
