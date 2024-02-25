@@ -4,4 +4,4 @@ build-backend = "setuptools.build_meta"
 
 [tools.setuptools]
 name = "final_idp_utilities_david_hdez"
-version = "0.0.2"
+version = "0.0.3"

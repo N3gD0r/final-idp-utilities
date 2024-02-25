@@ -98,10 +98,12 @@ class VmArgs(ProgramArgs):
         self.memory = None
         self.disk = None
         self.instance_class = None
+        self.data = None
         self.tags = None
 
     def process_payload(self, payload: dict):
-        for key in ('os', 'cpu', 'memory', 'disk', 'instance_class', 'storage', 'tags'):
+        for key in ('os', 'cpu', 'memory', 'disk', 'data',
+                    'instance_class', 'storage', 'tags'):
             if key in payload.keys():
                 setattr(self, key, payload[key])
 
