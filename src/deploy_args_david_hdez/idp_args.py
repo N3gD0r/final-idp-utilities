@@ -80,10 +80,11 @@ class DbManagedArgs(ProgramArgs):
         self.is_public = None
         self.db_name = None
         self.store_creds = None
+        self.secret_kms_key = None
 
     def process_payload(self, payload: dict):
         for key in ('engine', 'instance_class', 'storage', 'store_creds',
-                    'st_type', 'is_public', 'username',
+                    'st_type', 'is_public', 'username', 'secret_kms_key',
                     'password', 'db_name', 'tags'):
             if key in payload.keys():
                 setattr(self, key, payload[key])
