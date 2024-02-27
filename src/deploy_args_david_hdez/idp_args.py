@@ -110,3 +110,17 @@ class VmArgs(ProgramArgs):
             if key in payload.keys():
                 setattr(self, key, payload[key])
 
+
+class VpcArgs(ProgramArgs):
+    def __init__(self):
+        super().__init__()
+        self.network = None
+        self.network_suffix = None
+        self.public_subnets = None
+        self.private_subnets = None
+
+    def process_payload(self, payload: dict):
+        for key in ('network', 'network_suffix', 'public_subnets', 'private_subnets'):
+            if key in payload.keys():
+                setattr(self, key, payload[key])
+
