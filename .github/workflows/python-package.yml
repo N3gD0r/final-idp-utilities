@@ -65,16 +65,16 @@ jobs:
 
     - name: Get next version
       id: nexttag
-      uses: 'WyriHaximus/github-action-next-release-version@v1'
+      uses: 'WyriHaximus/github-action-next-semvers@v1.2.1'
       with:
         version: ${{ steps.prevtag.outputs.tag }}
 
     - name: github Release
       env:
         GITHUB_TOKEN: ${{ github.token }}
-      run: gh release create '${{ steps.nexttag.outputs.r_version }}' --repo '${{ github.repository }}' --notes ""
+      run: gh release create '${{ steps.nexttag.outputs.v_patch}}' --repo '${{ github.repository }}' --notes ""
 
     - name: Upload signatures to GitHub Release
       env:
         GITHUB_TOKEN: ${{ github.token }}
-      run: gh release upload '${{ steps.nexttag.outputs.r_version }}' dist/** --repo '${{ github.repository }}'
+      run: gh release upload '${{ steps.nexttag.outputs.v_patch}}' dist/** --repo '${{ github.repository }}'
