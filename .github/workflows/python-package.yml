@@ -55,7 +55,7 @@ jobs:
 
     - name: Get previous version
       id: prevtag
-      uses: 'WyriHaximus/github-action-get-previous-tag@v1.4.0'
+      uses: 'WyriHaximus/github-action-get-previous-tag@v1'
       env:
         GITHUB_TOKEN: ${{ github.token }}
 
