@@ -11,6 +11,6 @@ def available_subnets(cidr_block: str,
     total_cidr_blocks = list(network.subnets(new_prefix=subnet_mask))
 
     public_subnets = total_cidr_blocks[:public_subnets_count]
-    private_subnets = total_cidr_blocks[public_subnets:public_subnets_count + private_subnets_count]
+    private_subnets = total_cidr_blocks[public_subnets_count:public_subnets_count + private_subnets_count]
 
     return public_subnets, private_subnets
