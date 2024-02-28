@@ -72,9 +72,9 @@ jobs:
     - name: github Release
       env:
         GITHUB_TOKEN: ${{ github.token }}
-      run: gh release create '${{ steps.nexttag.outputs.version }}' --repo '${{ github.repository }}' --notes ""
+      run: gh release create '${{ steps.nexttag.outputs.r_version }}' --repo '${{ github.repository }}' --notes ""
 
     - name: Upload signatures to GitHub Release
       env:
         GITHUB_TOKEN: ${{ github.token }}
-      run: gh release upload '${{ steps.nexttag.outputs.version }}' dist/** --repo '${{ github.repository }}'
+      run: gh release upload '${{ steps.nexttag.outputs.r_version }}' dist/** --repo '${{ github.repository }}'
