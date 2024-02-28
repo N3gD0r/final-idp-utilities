@@ -26,7 +26,7 @@ jobs:
     - name: upload package
       uses: actions/upload-artifact@v3
       with:
-       name: final_idp_utitlies_david_hdez
+       name: final_idp_utilities_david_hdez
        path: dist/
 
   release:
@@ -42,7 +42,7 @@ jobs:
     - name: download package
       uses: actions/download-artifact@v3
       with:
-        name: final_idp_utilities_david_hdez
+        name: final_idp_utilities_david_hdez 
         path: dist/
     - name: sign package
       uses: sigstore/gh-action-sigstore-python@v1.2.3
