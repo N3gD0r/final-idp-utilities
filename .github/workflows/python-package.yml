@@ -40,7 +40,7 @@ jobs:
       
     steps:
     - name: download package
-      uses: action/download-artifact@v3
+      uses: actions/download-artifact@v3
       with:
         name: final_idp_utilities_david_hdez
         path: dist/
