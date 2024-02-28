@@ -63,7 +63,7 @@ jobs:
       id: nexttag
       uses: 'WyriHaximus/github-action-next-release-version@v1'
       with:
-        version: ${{ setps.prevtag.outputs.tag }}
+        version: ${{ steps.prevtag.outputs.tag }}
 
     - name: github Release
       env:
