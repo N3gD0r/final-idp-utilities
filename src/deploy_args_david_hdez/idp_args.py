@@ -131,11 +131,10 @@ class ClusterArgs(ProgramArgs):
     def __init__(self):
         super().__init__()
         self.name = None
-        self.vpc_id = None
-        self.az = None
+        self.user = None
 
     def process_payload(self, payload: dict):
-        for key in ('name', 'vpc_id', 'az'):
+        for key in ('name', 'user'):
             if key in payload.keys():
                 setattr(self, key, payload[key])
 
@@ -145,13 +144,9 @@ class ClusterAppArgs(ProgramArgs):
         super().__init__()
         self.name = None
         self.cluster_arn = None
-        self.sec_groups_id = None
-        self.vpc_id = None
-        self.subnets_ids = None
 
     def process_payload(self, payload: dict):
-        for key in ('name', 'cluster_arn', 'sec_groups_id',
-                    'vpc_id', 'subnets_id'):
+        for key in ('name', 'cluster_arn'):
             if key in payload.keys():
                 setattr(self, key, payload[key])
 
