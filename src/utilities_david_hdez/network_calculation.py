@@ -4,6 +4,11 @@ import ipaddress
 def available_subnets(cidr_block: str,
                       public_subnets_count: int,
                       private_subnets_count: int) -> (list, list):
+    if public_subnets_count < 1:
+        public_subnets_count = 1
+    if private_subnets_count < 0:
+        private_subnets_count = 0
+
     network = ipaddress.ip_network(cidr_block)
 
     subnet_mask = network.prefixlen + max(public_subnets_count, private_subnets_count)

@@ -81,11 +81,12 @@ class DbManagedArgs(ProgramArgs):
         self.db_name = None
         self.store_creds = None
         self.secret_kms_key = None
+        self.subnets = None
 
     def process_payload(self, payload: dict):
         for key in ('engine', 'instance_class', 'storage', 'store_creds',
                     'st_type', 'is_public', 'username', 'secret_kms_key',
-                    'password', 'db_name', 'tags'):
+                    'password', 'db_name', 'tags', 'subnets'):
             if key in payload.keys():
                 setattr(self, key, payload[key])
 
@@ -101,10 +102,11 @@ class VmArgs(ProgramArgs):
         self.data = None
         self.tags = None
         self.vpc = None
+        self.subnet_id = None
         self.pub_key = None
 
     def process_payload(self, payload: dict):
-        for key in ('os', 'cpu', 'storage',
+        for key in ('os', 'cpu', 'storage', 'subnet_id',
                     'disk_type', 'vpc', 'pub_key',
                     'data', 'instance_type', 'tags'):
             if key in payload.keys():
@@ -121,6 +123,35 @@ class VpcArgs(ProgramArgs):
 
     def process_payload(self, payload: dict):
         for key in ('network', 'network_suffix', 'public_subnets', 'private_subnets'):
+            if key in payload.keys():
+                setattr(self, key, payload[key])
+
+
+class ClusterArgs(ProgramArgs):
+    def __init__(self):
+        super().__init__()
+        self.name = None
+        self.vpc_id = None
+        self.az = None
+
+    def process_payload(self, payload: dict):
+        for key in ('name', 'vpc_id', 'az'):
+            if key in payload.keys():
+                setattr(self, key, payload[key])
+
+
+class ClusterAppArgs(ProgramArgs):
+    def __init__(self):
+        super().__init__()
+        self.name = None
+        self.cluster_arn = None
+        self.sec_groups_id = None
+        self.vpc_id = None
+        self.subnets_ids = None
+
+    def process_payload(self, payload: dict):
+        for key in ('name', 'cluster_arn', 'sec_groups_id',
+                    'vpc_id', 'subnets_id'):
             if key in payload.keys():
                 setattr(self, key, payload[key])
 
