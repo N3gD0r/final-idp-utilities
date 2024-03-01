@@ -132,9 +132,10 @@ class ClusterArgs(ProgramArgs):
         super().__init__()
         self.name = None
         self.user = None
+        self.pub_key = None
 
     def process_payload(self, payload: dict):
-        for key in ('name', 'user'):
+        for key in ('name', 'user', 'pub_key'):
             if key in payload.keys():
                 setattr(self, key, payload[key])
 
